@@ -26,9 +26,17 @@ public class Algebra {
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
 		int i = 0;
-		while(i < x2) {
-			x1++;
-			i++;
+		if(x2 >= 0) {
+			while(i < x2) {
+				x1++;
+				i++;
+			}
+		}
+		else {
+			while(i > x2) {
+				x1--;
+				i--;
+			}
 		}
 		return x1;
 	}
@@ -36,9 +44,17 @@ public class Algebra {
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
 		int i = 0;
-		while(i < x2) {
-			x1--;
-			i++;
+		if(x2 >= 0) {
+			while(i < x2) {
+				x1--;
+				i++;
+			}
+		}
+		else {
+			while(i > x2) {
+				x1++;
+				i--;
+			}
 		}
 		return x1;
 	}
@@ -49,9 +65,18 @@ public class Algebra {
 		int firstX1 = x1;
 		if(x2 == 0)  return 0;
 		else {
-			while(i < x2) {
-				x1 = plus(x1, firstX1);
-				i++;
+			if(x2 > 0){
+				while(i < x2) {
+					x1 = plus(x1, firstX1);
+					i++;	
+				}	
+			}
+			else {
+				while (i > x2) {
+					x1 = plus(x1, firstX1);
+					i--;		
+				}
+				x1 = minus(0, x1);
 			}
 		}
 		return x1;
@@ -75,9 +100,18 @@ public class Algebra {
 	public static int div(int x1, int x2) {
 		if(x2 == 0) return 0;
 		int counter = 0;
-		while(x1 >= x2){
-			x1 = minus(x1, x2);
-			counter++;
+		if(x2 > 0) {
+			while(x1 >= x2){
+				x1 = minus(x1, x2);
+				counter++;
+			}
+		}
+		else {
+			int newX2 = minus(0, x2);
+			while(x1 >= newX2){
+				x1 = minus(x1, newX2);
+				counter--;
+			}
 		}
 		return counter;
 	}
