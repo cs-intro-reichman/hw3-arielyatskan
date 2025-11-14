@@ -101,19 +101,20 @@ public class Algebra {
 	public static int div(int x1, int x2) {
 		if(x2 == 0) return 0;
 		int counter = 0;
-		if(x2 > 0) {
-			while(x1 >= x2){
-				x1 = minus(x1, x2);
-				counter++;
-			}
+		boolean positivity = true;
+		if(x1 < 0){
+			positivity = !positivity;
+			x1 = minus(0, x1);
 		}
-		else {
-			int newX2 = minus(0, x2);
-			while(x1 >= newX2){
-				x1 = minus(x1, newX2);
-				counter--;
-			}
+		if(x2 < 0) {
+			positivity = !positivity;
+			x2 = minus(0, x2);
 		}
+		while(x1 >= x2){
+			x1 = minus(x1, x2);
+			counter++;
+		}
+		if(!positivity)  counter = minus(0, counter);
 		return counter;
 	}
 
@@ -127,6 +128,7 @@ public class Algebra {
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
+		if(x == 1)  return 1;
 		double epsilon = 0.01;
 		double g = x / 2;
 		while (Math.abs(g * g - x) > epsilon) {
