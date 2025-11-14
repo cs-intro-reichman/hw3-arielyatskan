@@ -72,6 +72,7 @@ public class Algebra {
 				}	
 			}
 			else {
+				i = -1;
 				while (i > x2) {
 					x1 = plus(x1, firstX1);
 					i--;		
